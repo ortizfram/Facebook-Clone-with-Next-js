@@ -1,6 +1,7 @@
 import LeftSidebar from '@/components/LeftSidebar';
 import Login from '@/components/Login';
 import Navbar from '@/components/Navbar';
+import RightSidebar from '@/components/RightSidebar';
 import { useSession, getSession } from 'next-auth/react';
 import Head from 'next/head';
 
@@ -22,6 +23,7 @@ if (!session) return <Login />;
       <main>
         <Navbar />
         <LeftSidebar />
+        <RightSidebar />
       </main>
     </>
   )
