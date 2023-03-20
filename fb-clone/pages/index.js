@@ -1,7 +1,14 @@
 import Login from '@/components/Login'
+import { useSession } from 'next-auth/react'
 import Head from 'next/head'
 
 export default function Home() {
+
+const {data: session} = useSession()
+// handle login 
+if (!session) return <Login />;
+
+
   return (
     <>
       <Head>
@@ -11,8 +18,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Login />
+        HomePage
       </main>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+
+  return {
+    props: {
+      session,
+    },
+  };
 }
