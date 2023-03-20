@@ -6,20 +6,26 @@ import { CgMenuGridO } from "react-icons/cg";
 import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const { data: session } = useSession();
+
   return (
-    <div className='py-2 px-4 bg-white shadow-md flex justify-between items-center top-0 sticky z-50'>
-      <div className='flex items-center gap-2'>
-        <BsFacebook className='text-primary text-[40px]' />
+    <div className="py-2 px-4 bg-white shadow-md flex justify-between items-center top-0 sticky z-50">
+      <div className="flex items-center gap-2">
+        <BsFacebook className="text-primary text-[40px]" />
+
+
+
+
 {/* search bar */}
-        <div className='relative hidden sm:block'>
-            <AiOutlineSearch className='absolute text-[20px] top-[10px] left-[10px] text-gray-500' />
-            <input 
-                type="text"
-                className='bg-[#F0F2F5] p-2 rounded-full pl-9 outline-none placeholder:text-gray-500'
-                placeholder='Search Facebook'     />
+        <div className="relative hidden sm:block">
+          <AiOutlineSearch className="absolute text-[20px] top-[10px] left-[10px] text-gray-500" />
+          <input
+            className="bg-[#F0F2F5] p-2 rounded-full pl-9 outline-none placeholder:text-gray-500"
+            type="text"
+            placeholder="Search Facebook"
+          />
         </div>
       </div>
-
 
 
 
@@ -27,7 +33,6 @@ const Navbar = () => {
       <div className="hidden lg:flex items-center gap-[100px] text-[30px] text-gray-500">
         <div className="relative">
           <AiFillHome className="text-primary" />
-          {/* ___color line */}
           <div className="absolute bg-primary -left-[40px] h-[3px] w-[110px] -bottom-[16px]"></div>
         </div>
 
@@ -39,8 +44,32 @@ const Navbar = () => {
           <path d="M23.5 9.5H10.25a.75.75 0 00-.75.75v7c0 .414.336.75.75.75H17v5.5H4.5v-19h19v5zm0 14h-5v-6.25a.75.75 0 00-.75-.75H11V11h12.5v12.5zm1.5.25V4.25C25 3.561 24.439 3 23.75 3H4.25C3.561 3 3 3.561 3 4.25v19.5c0 .689.561 1.25 1.25 1.25h19.5c.689 0 1.25-.561 1.25-1.25z"></path>
         </svg>
       </div>
-    </div>
-  )
-}
 
-export default Navbar
+
+      
+{/* profile options */}
+      <div className="flex items-center gap-4">
+        <div className="icon_wrapper text-[28px]">
+          <CgMenuGridO />
+        </div>
+
+        <div className="icon_wrapper text-[20px]">
+          <BsMessenger />
+        </div>
+
+        <div className="icon_wrapper text-[20px]">
+          <IoNotifications />
+        </div>
+
+        <img
+          className="w-[44px] cursor-pointer rounded-full"
+          src={session?.user?.image}
+          alt="dp"
+          onClick={signOut}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
