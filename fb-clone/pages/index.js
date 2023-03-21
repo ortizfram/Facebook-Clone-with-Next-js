@@ -1,3 +1,4 @@
+import Feed from '@/components/Feed';
 import LeftSidebar from '@/components/LeftSidebar';
 import Login from '@/components/Login';
 import Navbar from '@/components/Navbar';
@@ -24,6 +25,7 @@ if (!session) return <Login />;
         <Navbar />
         <LeftSidebar />
         <RightSidebar />
+        <Feed />
       </main>
     </>
   )
